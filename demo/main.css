@@ -6,6 +6,7 @@ body {
   display: flex;
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 
 .sidebar {
@@ -34,8 +35,10 @@ body {
 
 .content {
   width: calc(100% - 70px);
-  height: 100%;
+  min-height: 100%;
   display: inline-block;
+  padding: 15px;
+  overflow: auto;
 }
 
 .box {
@@ -45,8 +48,9 @@ body {
 }
 
 .box-container {
-  padding: 15px;
-  height: 100%;
+  height: calc(50vh - 15px);
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .full-width {
