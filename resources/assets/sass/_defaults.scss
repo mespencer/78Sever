@@ -1,5 +1,14 @@
 // Default Colors
-$grey: #808080;
+$primary:  #2196f3;
+$secondary: #1976d2;
+$thirdly: #0d47a1;
+$accent: #e91e63;
+$black: rgba(0, 0, 0, .87);
+$grey: rgba(0, 0, 0, .54);
+$light-grey: rgba(0, 0, 0, .38);
+$white: rgba(255, 255, 255, 1);
+$off-white: rgba(255, 255, 255, .7);
+$light-off-white: rgba(255, 255, 255, .5);
 
 //Default Values
 $radius-sm: 5px;
@@ -11,12 +20,24 @@ $padding-lg: 20px;
 
 
 // Colors
-$sidebar-background: $grey;
-$sidebar-text: #fff;
+$primary-text: $black;
+$secondary-text: $grey;
+$disabled-text: $light-grey;
+$primary-text-light: $white;
+$secondary-text-light: $off-white;
+$disabled-text-light: $light-off-white;
+
+$sidebar-background: $primary;
+$sidebar-text: $secondary-text-light;
+$sidebar-text-hover: $accent;
 
 $box-border-color: $sidebar-background;
 
 // Values
+$link: $secondary;
+$link-hover: $thirdly;
+
+
 $sidebar-font-size: 30px;
 $sidebar-button-spacing: $padding-lg;
 
