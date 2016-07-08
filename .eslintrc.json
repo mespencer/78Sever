@@ -1,0 +1,19 @@
+{
+    "extends": "airbnb",
+    "env": {
+      "jquery": true
+    },
+    "plugins": [
+        "react"
+    ],
+    "globals": {
+      "React": false,
+      "ReactDOM": false
+    },
+    "rules": {
+      // May want to turn this back on eventually, but not for now
+      "react/prefer-stateless-function": [
+        "off"
+      ]
+    }
+}

@@ -23,15 +23,18 @@
       <span class="glyphicon glyphicon-cog"></span>
     </a>
   </nav>
-  <div class="content">
+  <div class="content" id="content">
     @yield('content')
   </div>
 
   <!-- Javascript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
   <script type="text/babel" src="js/app.js"></script>
+  <script src="js/load.js"></script>
   @yield('footer')
 </body>
 </html>
