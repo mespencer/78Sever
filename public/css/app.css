@@ -4,6 +4,9 @@
     background-color: #2196f3;
     color: white; }
 
+.table > tbody > tr > td {
+  border-color: #2196f3; }
+
 html {
   height: 100%; }
 
@@ -35,7 +38,7 @@ a {
   cursor: pointer;
   display: block;
   font-size: 30px;
-  padding-top: 20px;
+  padding-top: 30px;
   width: 100%; }
   .sidebar-button:hover {
     color: rgba(255, 255, 255, 0.7); }
@@ -53,6 +56,7 @@ a {
 
 .box-container {
   height: calc(50vh - 15px);
+  overflow: hidden;
   padding-bottom: 15px;
   padding-top: 15px; }
 
@@ -64,5 +68,13 @@ a {
 
 .half-height {
   height: 50%; }
+
+.close-container {
+  color: rgba(0, 0, 0, 0.54);
+  cursor: pointer;
+  text-align: center;
+  width: 35px; }
+  .close-container:hover {
+    color: rgba(0, 0, 0, 0.87); }
 
 /*# sourceMappingURL=app.css.map */

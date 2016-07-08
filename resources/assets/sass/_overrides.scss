@@ -7,3 +7,8 @@
     color: $primary-text-light;
   }
 }
+
+// Tables
+.table > tbody > tr > td {
+  border-color: $box-border-color;
+}

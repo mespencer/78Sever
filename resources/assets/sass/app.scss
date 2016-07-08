@@ -59,6 +59,7 @@ a {
 
 .box-container {
   height: calc(50vh - #{$box-spacing-half});
+  overflow: hidden;
   padding-bottom: $box-spacing-half;
   padding-top: $box-spacing-half;
 }
@@ -75,4 +76,15 @@ a {
 .half-height {
   height: 50%;
   // Add support for remove during xs
+}
+
+.close-container {
+  color: $secondary-text;
+  cursor: pointer;
+  text-align: center;
+  width: 35px;
+
+  &:hover {
+    color: $primary-text;
+  }
 }

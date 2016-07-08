@@ -13,4 +13,10 @@
 
 Route::auth();
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'PageController@index');
+Route::get('/message-board', 'PageController@index');
+Route::get('/chores', 'PageController@index');
+Route::get('/shopping-list', 'PageController@index');
+Route::get('/settings', 'PageController@index');
+
+Route::get('/message/list', 'MessagesController@jsonList');

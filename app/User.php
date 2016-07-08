@@ -29,6 +29,11 @@ class User extends Authenticatable
       return $this->hasMany('App\Message', 'created_by');
     }
 
+    public function activeMessages()
+    {
+      return Message::where('active_for', 'LIKE', $this->id)->get();
+    }
+
     public function shoppingLists()
     {
       return $this->hasMany('App\ShoppingList', 'created_by');
