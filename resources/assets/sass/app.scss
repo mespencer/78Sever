@@ -1,2 +1,71 @@
+@import 'defaults';
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+.sidebar {
+  background: $sidebar-background;
+  display: inline-flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  text-align: center;
+  width: 70px;
+}
+
+.sidebar-button {
+  color: $sidebar-text;
+  cursor: pointer;
+  display: block;
+  font-size: $sidebar-font-size;
+  padding-top: $sidebar-button-spacing;
+  width: 100%;
+}
+
+.sidebar-bottom {
+  bottom: 20px;
+  position: absolute;
+}
+
+.content {
+  display: inline-block;
+  min-height: 100%;
+  overflow: auto;
+  padding: $box-spacing-half;
+  width: calc(100% - 70px);
+}
+
+.box {
+  border: 1px solid $box-border-color;
+  border-radius: $box-radius;
+  padding: $box-spacing-half;
+
+  &-container {
+    height: calc(50vh - $box-spacing-half);
+    padding-bottom: $box-spacing-half;
+    padding-top: $box-spacing-half;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+  // Add support for remove during xs
+}
+
+.half-height {
+  height: 50%;
+  // Add support for remove during xs
+}

@@ -15,3 +15,10 @@
     </div>
 </div>
 @endsection
+
+@section('footer')
+  <script>
+    console.log(homepage);
+    homepage();
+  </script>
+@endsection

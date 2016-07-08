@@ -1,0 +1,59 @@
+html {
+  height: 100%; }
+
+body {
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+  width: 100%; }
+
+.sidebar {
+  background: #808080;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  text-align: center;
+  width: 70px; }
+
+.sidebar-button {
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-size: 30px;
+  padding-top: 20px;
+  width: 100%; }
+
+.sidebar-bottom {
+  bottom: 20px;
+  position: absolute; }
+
+.content {
+  display: inline-block;
+  min-height: 100%;
+  overflow: auto;
+  padding: 15px;
+  width: calc(100% - 70px); }
+
+.box {
+  border: 1px solid #808080;
+  border-radius: 5px;
+  padding: 15px; }
+  .box-container {
+    height: calc(50vh - $box-spacing-half);
+    padding-bottom: 15px;
+    padding-top: 15px; }
+
+.full-width {
+  width: 100%; }
+
+.full-height {
+  height: 100%; }
+
+.half-height {
+  height: 50%; }
+
+/*# sourceMappingURL=app.css.map */
