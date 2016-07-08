@@ -1,3 +1,9 @@
+.panel-default {
+  border-color: #2196f3; }
+  .panel-default > .panel-heading {
+    background-color: #2196f3;
+    color: white; }
+
 html {
   height: 100%; }
 
@@ -8,8 +14,13 @@ body {
   overflow: hidden;
   width: 100%; }
 
+a {
+  color: #1976d2; }
+  a:hover {
+    color: #0d47a1; }
+
 .sidebar {
-  background: #808080;
+  background: #2196f3;
   display: -ms-inline-flexbox;
   display: inline-flex;
   -ms-flex-direction: column;
@@ -20,12 +31,14 @@ body {
   width: 70px; }
 
 .sidebar-button {
-  color: #fff;
+  color: rgba(0, 0, 0, 0.54);
   cursor: pointer;
   display: block;
   font-size: 30px;
   padding-top: 20px;
   width: 100%; }
+  .sidebar-button:hover {
+    color: rgba(255, 255, 255, 0.7); }
 
 .sidebar-bottom {
   bottom: 20px;
@@ -38,14 +51,10 @@ body {
   padding: 15px;
   width: calc(100% - 70px); }
 
-.box {
-  border: 1px solid #808080;
-  border-radius: 5px;
-  padding: 15px; }
-  .box-container {
-    height: calc(50vh - $box-spacing-half);
-    padding-bottom: 15px;
-    padding-top: 15px; }
+.box-container {
+  height: calc(50vh - 15px);
+  padding-bottom: 15px;
+  padding-top: 15px; }
 
 .full-width {
   width: 100%; }

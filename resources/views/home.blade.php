@@ -8,6 +8,6 @@
 
 @section('footer')
   <script>
-    loadModule('homepage', 'content');
+    loadModule('Homepage', 'content');
   </script>
 @endsection

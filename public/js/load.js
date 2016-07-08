@@ -2,7 +2,7 @@ function loadModule(moduleName, renderId) {
   const callbackTimer = setInterval(() => {
     let call = false;
     try {
-      if (typeof window[moduleName] !== 'undefined') call = true;
+      if (typeof window.modules !== 'undefined') call = true;
     } catch (e) {
       // Do Nothing!
     }
@@ -10,7 +10,7 @@ function loadModule(moduleName, renderId) {
     if (call) {
       clearInterval(callbackTimer);
       ReactDOM.render(
-        window[moduleName],
+        window.modules[moduleName],
         document.getElementById(renderId)
       );
     }

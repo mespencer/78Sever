@@ -1,0 +1,9 @@
+// Panels
+.panel-default {
+  border-color: $box-border-color;
+
+  > .panel-heading {
+    background-color: $box-header-background;
+    color: $primary-text-light;
+  }
+}

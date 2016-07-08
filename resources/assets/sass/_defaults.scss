@@ -28,10 +28,11 @@ $secondary-text-light: $off-white;
 $disabled-text-light: $light-off-white;
 
 $sidebar-background: $primary;
-$sidebar-text: $secondary-text-light;
-$sidebar-text-hover: $accent;
+$sidebar-text: $secondary-text;
+$sidebar-text-hover: $secondary-text-light;
 
 $box-border-color: $sidebar-background;
+$box-header-background: $box-border-color;
 
 // Values
 $link: $secondary;

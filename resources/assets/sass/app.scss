@@ -1,4 +1,5 @@
 @import 'defaults';
+@import 'overrides';
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 html {
@@ -56,16 +57,10 @@ a {
   width: calc(100% - 70px);
 }
 
-.box {
-  border: 1px solid $box-border-color;
-  border-radius: $box-radius;
-  padding: $box-spacing-half;
-
-  &-container {
-    height: calc(50vh - #{$box-spacing-half});
-    padding-bottom: $box-spacing-half;
-    padding-top: $box-spacing-half;
-  }
+.box-container {
+  height: calc(50vh - #{$box-spacing-half});
+  padding-bottom: $box-spacing-half;
+  padding-top: $box-spacing-half;
 }
 
 .full-width {
