@@ -50,7 +50,7 @@ body {
   padding: $box-spacing-half;
 
   &-container {
-    height: calc(50vh - $box-spacing-half);
+    height: calc(50vh - #{$box-spacing-half});
     padding-bottom: $box-spacing-half;
     padding-top: $box-spacing-half;
   }
