@@ -18,4 +18,6 @@ class MessagesController extends Controller
       $user = Auth::user();
       var_dump($user->activeMessages()->all());
     }
+
+    
 }
