@@ -1,15 +1,15 @@
+import Message from './Message';
+
 class Layout extends React.Component {
   render() {
     const messages = this.props.messages.map((message, index) => {
       const content = (
-        <tr key={index}>
-          <td>
-            {message.text}
-          </td>
-          <td className="close-container">
-            <ReactBootstrap.Glyphicon glyph="remove" />
-          </td>
-        </tr>
+        <Message
+          id={message.id}
+          text={message.text}
+          markAsRead={this.props.markAsRead}
+          key={index}
+        />
       );
       return message.removed ? null : content;
     });
@@ -25,6 +25,7 @@ class Layout extends React.Component {
 }
 
 Layout.propTypes = {
+  markAsRead: React.PropTypes.func.isRequired,
   messages: React.PropTypes.array.isRequired,
 };
 
