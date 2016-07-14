@@ -1,6 +1,7 @@
 import Layout from './Layout';
 import Loader from '../Loader/Controller';
 import Box from '../Box/Controller';
+import AddMessage from './AddMessage';
 
 class Controller extends React.Component {
   constructor() {
@@ -39,7 +40,7 @@ class Controller extends React.Component {
   updateMessages() {
     if (!this.updating) {
       this.updating = true;
-      $.getJSON('/message/list', this.onResponse);
+      $.getJSON('/message', this.onResponse);
     }
   }
 
@@ -64,9 +65,7 @@ class Controller extends React.Component {
         <div>
           <ReactBootstrap.Glyphicon glyph="search" />
         </div>
-        <div>
-          <ReactBootstrap.Glyphicon glyph="plus" />
-        </div>
+        <AddMessage />
       </span>
     );
 

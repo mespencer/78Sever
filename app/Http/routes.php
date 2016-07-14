@@ -19,4 +19,4 @@ Route::get('/chores', 'PageController@index');
 Route::get('/shopping-list', 'PageController@index');
 Route::get('/settings', 'PageController@index');
 
-Route::get('/message/list', 'MessagesController@jsonList');
+Route::resource('message', 'MessagesController', ['except' => ['create', 'edit']]);

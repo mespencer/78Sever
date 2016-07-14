@@ -13,7 +13,7 @@ class MessagesController extends Controller
         $this->middleware('auth');
     }
 
-    public function jsonList()
+    public function index()
     {
       header('Content-Type: application/json');
       $user = Auth::user();

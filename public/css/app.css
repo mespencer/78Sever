@@ -77,4 +77,16 @@ a {
   .close-container:hover {
     color: rgba(0, 0, 0, 0.87); }
 
+.inline-block {
+  display: inline-block; }
+
+.box-header-actions {
+  color: white; }
+  .box-header-actions div {
+    display: inline-block;
+    padding-left: 10px; }
+  .box-header-actions div:hover {
+    color: rgba(0, 0, 0, 0.54);
+    cursor: pointer; }
+
 /*# sourceMappingURL=app.css.map */

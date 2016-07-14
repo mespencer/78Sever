@@ -54,7 +54,8 @@ var Controller = function (_React$Component) {
       return React.createElement(_Layout2.default, {
         title: this.props.title,
         content: this.props.children,
-        width: width
+        width: width,
+        actions: this.props.actions
       });
     }
   }]);
@@ -63,6 +64,7 @@ var Controller = function (_React$Component) {
 }(React.Component);
 
 Controller.propTypes = {
+  actions: React.PropTypes.node,
   children: React.PropTypes.node,
   title: React.PropTypes.string.isRequired,
   width: React.PropTypes.number
@@ -98,9 +100,14 @@ var Layout = function (_React$Component) {
     key: "render",
     value: function render() {
       var header = React.createElement(
-        "h1",
+        "span",
         null,
-        this.props.title
+        this.props.title,
+        React.createElement(
+          "div",
+          { className: "inline-block pull-right box-header-actions" },
+          this.props.actions
+        )
       );
 
       return React.createElement(
@@ -119,6 +126,7 @@ var Layout = function (_React$Component) {
 }(React.Component);
 
 Layout.propTypes = {
+  actions: React.PropTypes.node,
   content: React.PropTypes.node,
   title: React.PropTypes.string.isRequired,
   width: React.PropTypes.number.isRequired
@@ -160,15 +168,7 @@ var Controller = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Controller).call(this));
 
     _this.state = {
-      config: [{ id: 0, title: 'Messages', width: 6, content: React.createElement(_Controller2.default, { fill: true }) }, { id: 1, title: 'Shopping List', width: 6, content: React.createElement(
-          'p',
-          null,
-          'Groceries!'
-        ) }, { id: 2, title: 'Chores', width: 12, content: React.createElement(
-          'p',
-          null,
-          'Dishes!'
-        ) }]
+      config: [{ id: 0, width: 6, content: React.createElement(_Controller2.default, { width: 6, key: 0 }) }]
     };
     return _this;
   }
@@ -194,12 +194,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Controller = require("../Box/Controller");
-
-var _Controller2 = _interopRequireDefault(_Controller);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -218,12 +212,8 @@ var Layout = function (_React$Component) {
   _createClass(Layout, [{
     key: "render",
     value: function render() {
-      var boxes = this.props.config.map(function (box, index) {
-        return React.createElement(
-          _Controller2.default,
-          { title: box.title, width: box.width, key: index },
-          box.content
-        );
+      var boxes = this.props.config.map(function (box) {
+        return box.content;
       });
 
       return React.createElement(
@@ -247,7 +237,7 @@ Layout.propTypes = {
 
 exports.default = Layout;
 
-},{"../Box/Controller":2}],6:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -304,6 +294,10 @@ var _Controller = require('../Loader/Controller');
 
 var _Controller2 = _interopRequireDefault(_Controller);
 
+var _Controller3 = require('../Box/Controller');
+
+var _Controller4 = _interopRequireDefault(_Controller3);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -329,6 +323,7 @@ var Controller = function (_React$Component) {
 
     _this.updateMessages = _this.updateMessages.bind(_this);
     _this.onResponse = _this.onResponse.bind(_this);
+    _this.markAsRead = _this.markAsRead.bind(_this);
     return _this;
   }
 
@@ -346,6 +341,7 @@ var Controller = function (_React$Component) {
           loading: false,
           messages: data
         });
+        this.updating = false;
       }
     }
   }, {
@@ -353,32 +349,74 @@ var Controller = function (_React$Component) {
     value: function updateMessages() {
       if (!this.updating) {
         this.updating = true;
-        $.getJSON('/messages', this.onResponse);
+        $.getJSON('/message/list', this.onResponse);
       }
+    }
+  }, {
+    key: 'markAsRead',
+    value: function markAsRead(index) {
+      var messages = this.state.messages.slice(0);
+      for (var i = 0; i < messages.length; i++) {
+        if (messages[i].id === index) {
+          messages[i].removed = true;
+        }
+      }
+
+      this.setState({
+        messages: messages
+      });
     }
   }, {
     key: 'render',
     value: function render() {
-      var content = React.createElement(_Layout2.default, { messages: this.state.messages });
+      var content = React.createElement(_Layout2.default, { fill: true, messages: this.state.messages, markAsRead: this.markAsRead });
       var loading = React.createElement(_Controller2.default, null);
+      var actions = React.createElement(
+        'span',
+        null,
+        React.createElement(
+          'div',
+          null,
+          React.createElement(ReactBootstrap.Glyphicon, { glyph: 'search' })
+        ),
+        React.createElement(
+          'div',
+          null,
+          React.createElement(ReactBootstrap.Glyphicon, { glyph: 'plus' })
+        )
+      );
 
-      return this.state.loading ? loading : content;
+      return React.createElement(
+        _Controller4.default,
+        { title: 'Message Board', width: this.props.width, actions: actions },
+        this.state.loading ? loading : content
+      );
     }
   }]);
 
   return Controller;
 }(React.Component);
 
+Controller.propTypes = {
+  width: React.PropTypes.number.isRequired
+};
+
 exports.default = Controller;
 
-},{"../Loader/Controller":6,"./Layout":8}],8:[function(require,module,exports){
-"use strict";
+},{"../Box/Controller":2,"../Loader/Controller":6,"./Layout":8}],8:[function(require,module,exports){
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Message = require('./Message');
+
+var _Message2 = _interopRequireDefault(_Message);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -396,23 +434,17 @@ var Layout = function (_React$Component) {
   }
 
   _createClass(Layout, [{
-    key: "render",
+    key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var messages = this.props.messages.map(function (message, index) {
-        var content = React.createElement(
-          "tr",
-          { key: index },
-          React.createElement(
-            "td",
-            null,
-            message.text
-          ),
-          React.createElement(
-            "td",
-            { className: "close-container" },
-            React.createElement(ReactBootstrap.Glyphicon, { glyph: "remove" })
-          )
-        );
+        var content = React.createElement(_Message2.default, {
+          id: message.id,
+          text: message.text,
+          markAsRead: _this2.props.markAsRead,
+          key: index
+        });
         return message.removed ? null : content;
       });
 
@@ -420,7 +452,7 @@ var Layout = function (_React$Component) {
         ReactBootstrap.Table,
         null,
         React.createElement(
-          "tbody",
+          'tbody',
           null,
           messages
         )
@@ -432,10 +464,74 @@ var Layout = function (_React$Component) {
 }(React.Component);
 
 Layout.propTypes = {
+  markAsRead: React.PropTypes.func.isRequired,
   messages: React.PropTypes.array.isRequired
 };
 
 exports.default = Layout;
+
+},{"./Message":9}],9:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Message = function (_React$Component) {
+  _inherits(Message, _React$Component);
+
+  function Message() {
+    _classCallCheck(this, Message);
+
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Message).call(this));
+
+    _this.handleClick = _this.handleClick.bind(_this);
+    return _this;
+  }
+
+  _createClass(Message, [{
+    key: "handleClick",
+    value: function handleClick() {
+      this.props.markAsRead(this.props.id);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return React.createElement(
+        "tr",
+        null,
+        React.createElement(
+          "td",
+          null,
+          this.props.text
+        ),
+        React.createElement(
+          "td",
+          { className: "close-container" },
+          React.createElement(ReactBootstrap.Glyphicon, { glyph: "remove", onClick: this.handleClick })
+        )
+      );
+    }
+  }]);
+
+  return Message;
+}(React.Component);
+
+Message.propTypes = {
+  id: React.PropTypes.number.isRequired,
+  markAsRead: React.PropTypes.func.isRequired,
+  text: React.PropTypes.string.isRequired
+};
+
+exports.default = Message;
 
 },{}]},{},[1]);
 
