@@ -32,4 +32,10 @@ class MessagesController extends Controller
 
       echo json_encode($results);
     }
+
+    public function store(Request $request)
+    {
+      $input = $request->all();
+      Message::create($input);
+    }
 }
