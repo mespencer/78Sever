@@ -88,3 +88,21 @@ a {
     color: $primary-text;
   }
 }
+
+.inline-block {
+  display: inline-block;
+}
+
+.box-header-actions {
+  color: $primary-text-light;
+
+  div {
+    display: inline-block;
+    padding-left: $box-header-action-spacing;
+  }
+
+  div:hover {
+    color: $secondary-text;
+    cursor: pointer;
+  }
+}

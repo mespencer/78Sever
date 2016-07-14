@@ -14,12 +14,14 @@ class Controller extends React.Component {
         title={this.props.title}
         content={this.props.children}
         width={width}
+        actions={this.props.actions}
       />
     );
   }
 }
 
 Controller.propTypes = {
+  actions: React.PropTypes.node,
   children: React.PropTypes.node,
   title: React.PropTypes.string.isRequired,
   width: React.PropTypes.number,

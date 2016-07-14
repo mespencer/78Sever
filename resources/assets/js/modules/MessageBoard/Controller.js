@@ -1,5 +1,6 @@
 import Layout from './Layout';
 import Loader from '../Loader/Controller';
+import Box from '../Box/Controller';
 
 class Controller extends React.Component {
   constructor() {
@@ -56,11 +57,29 @@ class Controller extends React.Component {
   }
 
   render() {
-    const content = <Layout messages={this.state.messages} markAsRead={this.markAsRead} />;
+    const content = <Layout fill messages={this.state.messages} markAsRead={this.markAsRead} />;
     const loading = <Loader />;
+    const actions = (
+      <span>
+        <div>
+          <ReactBootstrap.Glyphicon glyph="search" />
+        </div>
+        <div>
+          <ReactBootstrap.Glyphicon glyph="plus" />
+        </div>
+      </span>
+    );
 
-    return this.state.loading ? loading : content;
+    return (
+      <Box title="Message Board" width={this.props.width} actions={actions}>
+        {this.state.loading ? loading : content}
+      </Box>
+    );
   }
 }
+
+Controller.propTypes = {
+  width: React.PropTypes.number.isRequired,
+};
 
 export default Controller;
