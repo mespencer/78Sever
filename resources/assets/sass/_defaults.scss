@@ -1,8 +1,8 @@
 // Default Colors
 $primary:  #2196f3;
-$secondary: #1976d2;
+$secondary: #e3f2fd; //#1976d2;
 $thirdly: #0d47a1;
-$accent: #e91e63;
+$accent: #f44336;
 $black: rgba(0, 0, 0, .87);
 $grey: rgba(0, 0, 0, .54);
 $light-grey: rgba(0, 0, 0, .38);
@@ -19,7 +19,8 @@ $padding-sm: 10px;
 $padding-md: 15px;
 $padding-lg: 20px;
 $padding-xl: 30px;
-$break-sm: 768px;
+$break-sm-min: 768px;
+$break-xs-max: $break-sm-min - 1;
 $transition-sm: .5s;
 $transition-md: 1.5s;
 $transition-lg: 2s;
@@ -36,6 +37,8 @@ $sidebar-background: $primary;
 $sidebar-text: $secondary-text;
 $sidebar-text-hover: $secondary-text-light;
 $sidebar-shadow: $grey;
+$sidebar-trigger-background: $thirdly;
+$sidebar-trigger-text: $primary-text-light;
 
 $box-border-color: $sidebar-background;
 $box-header-background: $box-border-color;
@@ -50,7 +53,8 @@ $sidebar-button-spacing: $padding-xl;
 $sidebar-width: 70px;
 $sidebar-transition: $transition-md;
 $sidebar-shadow-size: 5px;
-$sidebar-trigger-size: 60px;
+$sidebar-trigger-size: 50px;
+$sidebar-trigger-font-size: 20px;
 $sidebar-trigger-spacing: ($sidebar-width - $sidebar-trigger-size) / 2;
 
 $box-spacing-half: $padding-md;

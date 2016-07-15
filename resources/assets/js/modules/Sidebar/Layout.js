@@ -2,11 +2,10 @@ class Layout extends React.Component {
   render() {
     return (
       <nav className={`sidebar ${this.props.open ? 'sidebar-reveal' : null}`}>
-        <a className="sidebar-button sidebar-trigger" onClick={this.props.actions.home}>
+        <a className="sidebar-button sidebar-trigger" onClick={this.props.toggleOpen}>
           <ReactBootstrap.Glyphicon
             glyph="tasks"
             className="center-vertical"
-            onClick={this.props.toggleOpen}
           />
         </a>
         <a className="sidebar-button top-button" onClick={this.props.actions.home}>

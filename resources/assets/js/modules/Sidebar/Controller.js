@@ -9,12 +9,21 @@ class Controller extends React.Component {
     };
 
     this.toggleOpen = this.toggleOpen.bind(this);
+    this.action = this.action.bind(this);
   }
 
   toggleOpen() {
     this.setState({
       open: !this.state.open,
     });
+  }
+
+  action(action) {
+    this.setState({
+      open: false,
+    });
+
+    this.props.actions[action]();
   }
 
   render() {

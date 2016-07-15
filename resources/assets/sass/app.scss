@@ -27,12 +27,13 @@ a {
   display: inline-flex;
   flex-direction: column;
   height: 100%;
+  left: 0;
   position: relative;
   text-align: center;
   transition: $sidebar-transition;
   width: $sidebar-width;
 
-  @media (max-width: $break-sm) {
+  @media (max-width: $break-xs-max) {
     box-shadow: 0 0 $sidebar-shadow-size $sidebar-shadow;
     left: -$sidebar-width;
     position: absolute;
@@ -43,7 +44,10 @@ a {
     left: 0;
 
     .sidebar-trigger {
+      background: $sidebar-background;
       box-shadow: none;
+      color: $sidebar-text;
+      font-size: $sidebar-font-size;
     }
 
     .sidebar-trigger:hover {
@@ -65,7 +69,7 @@ a {
     }
 
     &.top-button {
-      @media (max-width : $break-sm) {
+      @media (max-width : $break-xs-max) {
         padding-top: $sidebar-trigger-size + 20px;
       }
     }
@@ -77,24 +81,26 @@ a {
   }
 
   &-trigger {
-    background: $sidebar-background;
+    background: $sidebar-trigger-background;
     border-radius: $sidebar-trigger-size / 2;
     box-shadow: 0 0 $sidebar-shadow-size $sidebar-shadow;
+    color: $sidebar-trigger-text;
+    font-size: $sidebar-trigger-font-size;
     height: $sidebar-trigger-size;
     left: $sidebar-trigger-spacing;
     padding: 0;
     position: fixed;
     top: $sidebar-trigger-spacing;
-    transition: $transition-sm;
+    transition: all $transition-md, box-shadow $transition-sm, color $transition-sm;
     width: $sidebar-trigger-size;
 
     &:hover {
       box-shadow: 0 4px $sidebar-shadow-size $sidebar-shadow;
-      color: $sidebar-text;
+      color: $sidebar-trigger-text;
     }
 
-    @media (min-width: $break-sm) {
-      display: none;
+    @media (min-width: $break-sm-min) {
+      top: -($sidebar-trigger-size + $sidebar-trigger-spacing);
     }
   }
 }
@@ -106,11 +112,15 @@ a {
   padding: $box-spacing-half;
   width: calc(100% - #{$sidebar-width});
 
-  @media (max-width : $break-sm) {
+  @media (max-width : $break-xs-max) {
     padding: $box-spacing-half-sm;
-    padding-top: $sidebar-trigger-size + 5px; // Find a better solution later
     width: 100%;
   }
+}
+
+@keyframes box-container-shift-left {
+  0% { margin-left: $sidebar-width; }
+  100% { margin-left: 0; }
 }
 
 .box {
@@ -119,8 +129,11 @@ a {
     overflow: hidden;
     padding-bottom: $box-spacing-half;
     padding-top: $box-spacing-half;
+    transition: all $transition-md;
 
-    @media (max-width : $break-sm) {
+    @media (max-width : $break-xs-max) {
+      animation-duration: $transition-md;
+      animation-name: box-container-shift-left;
       height: auto;
       padding-bottom: $box-spacing-half-sm;
       padding-top: $box-spacing-half-sm;
@@ -140,6 +153,15 @@ a {
       cursor: pointer;
     }
   }
+
+  &-title {
+    overflow: hidden;
+    width: auto;
+
+    @media (max-width : $break-xs-max) {
+      text-align: center;
+    }
+  }
 }
 
 .full {
@@ -155,7 +177,7 @@ a {
   &-page {
     height: calc(100vh - #{$box-spacing-half * 2});
 
-    @media (max-width : $break-sm) {
+    @media (max-width : $break-xs-max) {
       height: auto;
     }
   }

@@ -2,9 +2,11 @@ class Layout extends React.Component {
   render() {
     const header = (
       <span>
-        {this.props.title}
         <div className="inline-block pull-right box-header-actions">
           {this.props.actions}
+        </div>
+        <div className="box-title">
+          {this.props.title}
         </div>
       </span>
     );
