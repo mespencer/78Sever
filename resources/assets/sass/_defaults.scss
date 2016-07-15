@@ -14,11 +14,15 @@ $light-off-white: rgba(255, 255, 255, .5);
 $radius-sm: 5px;
 $radius-md: 10px;
 $radius-lg: 15px;
+$padding-xs: 5px;
 $padding-sm: 10px;
 $padding-md: 15px;
 $padding-lg: 20px;
 $padding-xl: 30px;
-
+$break-sm: 768px;
+$transition-sm: .5s;
+$transition-md: 1.5s;
+$transition-lg: 2s;
 
 // Colors
 $primary-text: $black;
@@ -31,6 +35,7 @@ $disabled-text-light: $light-off-white;
 $sidebar-background: $primary;
 $sidebar-text: $secondary-text;
 $sidebar-text-hover: $secondary-text-light;
+$sidebar-shadow: $grey;
 
 $box-border-color: $sidebar-background;
 $box-header-background: $box-border-color;
@@ -42,7 +47,13 @@ $link-hover: $thirdly;
 
 $sidebar-font-size: 30px;
 $sidebar-button-spacing: $padding-xl;
+$sidebar-width: 70px;
+$sidebar-transition: $transition-md;
+$sidebar-shadow-size: 5px;
+$sidebar-trigger-size: 60px;
+$sidebar-trigger-spacing: ($sidebar-width - $sidebar-trigger-size) / 2;
 
 $box-spacing-half: $padding-md;
+$box-spacing-half-sm: $box-spacing-half / 2;
 $box-radius: $radius-sm;
 $box-header-action-spacing: $padding-sm;

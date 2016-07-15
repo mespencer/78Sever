@@ -29,25 +29,74 @@ a {
   height: 100%;
   position: relative;
   text-align: center;
-  width: 70px;
-}
+  transition: $sidebar-transition;
+  width: $sidebar-width;
 
-.sidebar-button {
-  color: $sidebar-text;
-  cursor: pointer;
-  display: block;
-  font-size: $sidebar-font-size;
-  padding-top: $sidebar-button-spacing;
-  width: 100%;
-
-  &:hover {
-    color: $sidebar-text-hover;
+  @media (max-width: $break-sm) {
+    box-shadow: 0 0 $sidebar-shadow-size $sidebar-shadow;
+    left: -$sidebar-width;
+    position: absolute;
+    z-index: 5;
   }
-}
 
-.sidebar-bottom {
-  bottom: 20px;
-  position: absolute;
+  &-reveal {
+    left: 0;
+
+    .sidebar-trigger {
+      box-shadow: none;
+    }
+
+    .sidebar-trigger:hover {
+      box-shadow: none;
+      color: $sidebar-text-hover;
+    }
+  }
+
+  &-button {
+    color: $sidebar-text;
+    cursor: pointer;
+    display: block;
+    font-size: $sidebar-font-size;
+    padding-top: $sidebar-button-spacing;
+    width: 100%;
+
+    &:hover {
+      color: $sidebar-text-hover;
+    }
+
+    &.top-button {
+      @media (max-width : $break-sm) {
+        padding-top: $sidebar-trigger-size + 20px;
+      }
+    }
+  }
+
+  &-bottom {
+    bottom: 20px;
+    position: absolute;
+  }
+
+  &-trigger {
+    background: $sidebar-background;
+    border-radius: $sidebar-trigger-size / 2;
+    box-shadow: 0 0 $sidebar-shadow-size $sidebar-shadow;
+    height: $sidebar-trigger-size;
+    left: $sidebar-trigger-spacing;
+    padding: 0;
+    position: fixed;
+    top: $sidebar-trigger-spacing;
+    transition: $transition-sm;
+    width: $sidebar-trigger-size;
+
+    &:hover {
+      box-shadow: 0 4px $sidebar-shadow-size $sidebar-shadow;
+      color: $sidebar-text;
+    }
+
+    @media (min-width: $break-sm) {
+      display: none;
+    }
+  }
 }
 
 .content {
@@ -55,32 +104,85 @@ a {
   min-height: 100%;
   overflow: auto;
   padding: $box-spacing-half;
-  width: calc(100% - 70px);
+  width: calc(100% - #{$sidebar-width});
+
+  @media (max-width : $break-sm) {
+    padding: $box-spacing-half-sm;
+    width: 100%;
+  }
 }
 
-.box-container {
-  height: calc(50vh - #{$box-spacing-half});
-  overflow: hidden;
-  padding-bottom: $box-spacing-half;
-  padding-top: $box-spacing-half;
+.box {
+  &-container {
+    height: calc(50vh - #{$box-spacing-half});
+    overflow: hidden;
+    padding-bottom: $box-spacing-half;
+    padding-top: $box-spacing-half;
+
+    @media (max-width : $break-sm) {
+      height: auto;
+      padding-bottom: $box-spacing-half-sm;
+      padding-top: $box-spacing-half-sm;
+    }
+  }
+
+  &-header-actions {
+    color: $primary-text-light;
+
+    div {
+      display: inline-block;
+      padding-left: $box-header-action-spacing;
+    }
+
+    div:hover {
+      color: $secondary-text;
+      cursor: pointer;
+    }
+  }
 }
 
-.full-width {
-  width: 100%;
-}
+.full {
+  &-width {
+    width: 100%;
+  }
 
-.full-height {
-  height: 100%;
-  // Add support for remove during xs
-}
+  &-height {
+    height: 100%;
+    // Add support for remove during xs
+  }
 
-.full-page {
-  height: calc(100vh - #{$box-spacing-half * 2});
+  &-page {
+    height: calc(100vh - #{$box-spacing-half * 2});
+  }
 }
 
 .half-height {
   height: 50%;
   // Add support for remove during xs
+}
+
+.center {
+  &-vertical {
+    display: inline-block;
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+
+    &.center-horizontal {
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &-horizontal {
+    display: inline-block;
+    left: 50%;
+    position: relative;
+    transform: translate(-50%, 0);
+
+    &.center-vertical {
+      transform: translate(-50%, -50%);
+    }
+  }
 }
 
 .close-container {
@@ -96,18 +198,4 @@ a {
 
 .inline-block {
   display: inline-block;
-}
-
-.box-header-actions {
-  color: $primary-text-light;
-
-  div {
-    display: inline-block;
-    padding-left: $box-header-action-spacing;
-  }
-
-  div:hover {
-    color: $secondary-text;
-    cursor: pointer;
-  }
 }

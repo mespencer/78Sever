@@ -1,8 +1,15 @@
 class Layout extends React.Component {
   render() {
     return (
-      <nav className="sidebar">
-        <a className="sidebar-button" onClick={this.props.actions.home}>
+      <nav className={`sidebar ${this.props.open ? 'sidebar-reveal' : null}`}>
+        <a className="sidebar-button sidebar-trigger" onClick={this.props.actions.home}>
+          <ReactBootstrap.Glyphicon
+            glyph="tasks"
+            className="center-vertical"
+            onClick={this.props.toggleOpen}
+          />
+        </a>
+        <a className="sidebar-button top-button" onClick={this.props.actions.home}>
           <ReactBootstrap.Glyphicon glyph="home" />
         </a>
         <a className="sidebar-button" onClick={this.props.actions.messages}>
@@ -24,6 +31,8 @@ class Layout extends React.Component {
 
 Layout.propTypes = {
   actions: React.PropTypes.object.isRequired,
+  open: React.PropTypes.bool.isRequired,
+  toggleOpen: React.PropTypes.func.isRequired,
 };
 
 
