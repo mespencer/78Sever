@@ -1,5 +1,6 @@
 import Text from './Text';
 import ActiveFor from './ActiveFor';
+import Priority from './Priority';
 
 class Layout extends React.Component {
   render() {
@@ -11,6 +12,10 @@ class Layout extends React.Component {
         />
         <ActiveFor
           value={this.props.data.value.activeFor}
+          handleChange={this.props.handler}
+        />
+        <Priority
+          value={this.props.data.value.priority}
           handleChange={this.props.handler}
         />
       </div>

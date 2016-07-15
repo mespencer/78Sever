@@ -8,10 +8,13 @@ class Controller extends React.Component {
   }
 
   handleChange(id, value, state) {
-    const data = Object.assign({}, this.props.data);
-    data.value[id] = value;
-    data.valid[id] = state;
-    this.props.updateData(data);
+    const values = Object.assign({}, this.props.data.value);
+    values[id] = value;
+    const valid = Object.assign({}, this.props.data.valid);
+    valid[id] = state;
+    this.props.data.value = values;
+    this.props.data.valid = valid;
+    this.props.updateData(this.props.data);
   }
 
   render() {

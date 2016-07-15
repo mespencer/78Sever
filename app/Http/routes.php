@@ -14,9 +14,10 @@
 Route::auth();
 
 Route::get('/', 'PageController@index');
-Route::get('/message-board', 'PageController@index');
-Route::get('/chores', 'PageController@index');
-Route::get('/shopping-list', 'PageController@index');
-Route::get('/settings', 'PageController@index');
+Route::get('message-board', 'PageController@index');
+Route::get('chores', 'PageController@index');
+Route::get('shopping-list', 'PageController@index');
+Route::get('settings', 'PageController@index');
 
 Route::resource('message', 'MessagesController', ['except' => ['create', 'edit']]);
+Route::patch('message/{message}/seen', 'MessagesController@seen');

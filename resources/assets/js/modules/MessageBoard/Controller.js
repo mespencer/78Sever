@@ -9,16 +9,13 @@ class Controller extends React.Component {
 
     this.state = {
       loading: false,
-      messages: [
-        { id: 0, text: 'This is a message', removed: false },
-        { id: 1, text: 'This is a different message', removed: false },
-      ],
+      messages: [],
     };
 
     this.updating = false;
 
     this.updateMessages = this.updateMessages.bind(this);
-    this.onResponse = this.onResponse.bind(this);
+    this.onLoad = this.onLoad.bind(this);
     this.markAsRead = this.markAsRead.bind(this);
   }
 
@@ -27,7 +24,7 @@ class Controller extends React.Component {
     setInterval(this.updateMessages, 5000);
   }
 
-  onResponse(data) {
+  onLoad(data) {
     if (data) {
       this.setState({
         loading: false,
@@ -40,7 +37,7 @@ class Controller extends React.Component {
   updateMessages() {
     if (!this.updating) {
       this.updating = true;
-      $.getJSON('/message', this.onResponse);
+      $.getJSON('/message', this.onLoad);
     }
   }
 
@@ -49,6 +46,14 @@ class Controller extends React.Component {
     for (let i = 0; i < messages.length; i++) {
       if (messages[i].id === index) {
         messages[i].removed = true;
+        $.post(`/message/${messages[i].id}`, {
+          _token: token,
+          _method: 'DELETE',
+        });
+        $.post(`/message/${messages[i].id}/seen`, {
+          _token: token,
+          _method: 'PATCH',
+        });
       }
     }
 
@@ -65,7 +70,7 @@ class Controller extends React.Component {
         <div>
           <ReactBootstrap.Glyphicon glyph="search" />
         </div>
-        <AddMessage />
+        <AddMessage update={this.updateMessages} />
       </span>
     );
 

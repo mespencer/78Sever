@@ -1,4 +1,4 @@
-class Text extends React.Component {
+class Priority extends React.Component {
   constructor() {
     super();
 
@@ -7,9 +7,7 @@ class Text extends React.Component {
   }
 
   getValidationState(value = this.props.value) {
-    if (value.length === 0) {
-      return null;
-    } else if (value.length >= 5) {
+    if (value) {
       return 'success';
     }
 
@@ -17,30 +15,37 @@ class Text extends React.Component {
   }
 
   handleChange(e) {
-    this.props.handleChange('text',
+    this.props.handleChange('priority',
                             e.target.value,
                             this.getValidationState(e.target.value) === 'success');
   }
 
   render() {
     return (
-      <ReactBootstrap.FormGroup controlId="messageText" validationState={this.getValidationState()}>
-        <ReactBootstrap.ControlLabel>Message Body</ReactBootstrap.ControlLabel>
+      <ReactBootstrap.FormGroup
+        controlId="formControlsSelect"
+        validationState={this.getValidationState()}
+      >
+        <ReactBootstrap.ControlLabel>Priority</ReactBootstrap.ControlLabel>
         <ReactBootstrap.FormControl
-          componentClass="textarea"
+          componentClass="select"
           value={this.props.value}
           onChange={this.handleChange}
-          placeholder="Write something important"
-        />
-        <ReactBootstrap.FormControl.Feedback />
+        >
+          <option disabled value="">Choose One...</option>
+          <option value="0">Low</option>
+          <option value="1">Medium</option>
+          <option value="2">High</option>
+          <option value="3">Fucking Call 911</option>
+        </ReactBootstrap.FormControl>
       </ReactBootstrap.FormGroup>
     );
   }
 }
 
-Text.propTypes = {
+Priority.propTypes = {
   handleChange: React.PropTypes.func.isRequired,
   value: React.PropTypes.string.isRequired,
 };
 
-export default Text;
+export default Priority;

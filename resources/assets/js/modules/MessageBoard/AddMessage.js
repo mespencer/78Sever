@@ -9,15 +9,20 @@ class AddMessage extends React.Component {
       value: {
         text: '',
         activeFor: '',
+        priority: '',
       },
       valid: {
         text: false,
         activeFor: false,
+        priority: false,
       },
     };
 
     this.state = {
-      data: Object.assign({}, this.default),
+      data: {
+        value: Object.assign({}, this.default.value),
+        valid: Object.assign({}, this.default.valid),
+      },
     };
 
     this.updateData = this.updateData.bind(this);
@@ -27,24 +32,39 @@ class AddMessage extends React.Component {
   updateData(data) {
     const newData = Object.assign({}, data);
     this.setState({
-      data: newData,
+      data: {
+        value: Object.assign({}, newData.value),
+        valid: Object.assign({}, newData.valid),
+      },
     });
   }
 
   clearData() {
-    console.log(this.default);
     this.setState({
-      data: this.default,
+      data: {
+        value: Object.assign({}, this.default.value),
+        valid: Object.assign({}, this.default.valid),
+      },
     });
   }
 
   render() {
     return (
-      <Add title="New Message" url="/message" data={this.state.data} clear={this.clearData}>
+      <Add
+        title="New Message"
+        url="/message"
+        data={this.state.data}
+        clear={this.clearData}
+        update={this.props.update}
+      >
         <MessageForm data={this.state.data} updateData={this.updateData} />
       </Add>
     );
   }
 }
+
+AddMessage.propTypes = {
+  update: React.PropTypes.func,
+};
 
 export default AddMessage;

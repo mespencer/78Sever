@@ -3,9 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Message extends Model
 {
+    use SoftDeletes;
+    
+    protected $fillable = array('text', 'active_for', 'priority', 'created_by');
+
     public function createdBy()
     {
       return $this->belongsTo('App\User', 'created_by');
@@ -23,5 +28,18 @@ class Message extends Model
       }
 
       return $users;
+    }
+
+    public static function groupByName($name)
+    {
+      $output = '';
+      switch ($name) {
+        case 'all':
+        default:
+          $output = implode(' ', User::lists('id')->all());
+          break;
+      }
+
+      return $output;
     }
 }

@@ -11,10 +11,15 @@ class Controller extends React.Component {
     this.close = this.close.bind(this);
     this.open = this.open.bind(this);
     this.submit = this.submit.bind(this);
+    this.onDone = this.onDone.bind(this);
+    this.onFail = this.onFail.bind(this);
   }
 
   onDone() {
     console.log('Success');
+    if (typeof this.props.update !== 'undefined') {
+      this.props.update();
+    }
   }
 
   onFail() {
@@ -22,6 +27,7 @@ class Controller extends React.Component {
   }
 
   close() {
+    this.props.clear();
     this.setState({
       visible: false,
     });
@@ -43,11 +49,12 @@ class Controller extends React.Component {
     }
 
     if (valid) { // Change later
-      this.close();
-      $.post(this.props.url, this.props.data)
+      const data = Object.assign({}, this.props.data);
+      data._token = token; // Need for security
+      $.post(this.props.url, data)
        .done(this.onDone)
        .fail(this.onFail);
-      this.props.clear();
+      this.close();
     }
   }
 
@@ -70,6 +77,7 @@ Controller.propTypes = {
   clear: React.PropTypes.func.isRequired,
   data: React.PropTypes.object.isRequired,
   title: React.PropTypes.string.isRequired,
+  update: React.PropTypes.func,
   url: React.PropTypes.string.isRequired,
 };
 

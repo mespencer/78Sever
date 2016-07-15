@@ -6,8 +6,8 @@ class ActiveFor extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  getValidationState() {
-    if (this.props.value) {
+  getValidationState(value = this.props.value) {
+    if (value) {
       return 'success';
     }
 
@@ -15,7 +15,9 @@ class ActiveFor extends React.Component {
   }
 
   handleChange(e) {
-    this.props.handleChange('activeFor', e.target.value, this.getValidationState() === 'success');
+    this.props.handleChange('activeFor',
+                            e.target.value,
+                            this.getValidationState(e.target.value) === 'success');
   }
 
   render() {
@@ -28,9 +30,9 @@ class ActiveFor extends React.Component {
         <ReactBootstrap.FormControl
           componentClass="select"
           value={this.props.value}
-          placeholder="Choose one..."
           onChange={this.handleChange}
         >
+          <option disabled value="">Choose One...</option>
           <option value="all">Everyone</option>
           <option value="first-floor">First Floor</option>
         </ReactBootstrap.FormControl>

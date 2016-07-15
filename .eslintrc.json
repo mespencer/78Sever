@@ -9,7 +9,8 @@
     "globals": {
       "React": false,
       "ReactDOM": false,
-      "ReactBootstrap": false
+      "ReactBootstrap": false,
+      "token": false
     },
     "rules": {
       // May want to turn this back on eventually, but not for now
