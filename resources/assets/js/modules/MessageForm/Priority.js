@@ -33,7 +33,7 @@ class Priority extends React.Component {
           onChange={this.handleChange}
         >
           <option disabled value="">Choose One...</option>
-          <option value="0">Low</option>
+          <option value="0">Normal</option>
           <option value="1">Medium</option>
           <option value="2">High</option>
           <option value="3">Fucking Call 911</option>

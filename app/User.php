@@ -31,7 +31,7 @@ class User extends Authenticatable
 
     public function activeMessages()
     {
-      return Message::where('active_for', 'LIKE', $this->id)->get();
+      return Message::where('active_for', 'LIKE', $this->id)->orderBy('created_at', 'desc')->get();
     }
 
     public function shoppingLists()

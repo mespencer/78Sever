@@ -8,7 +8,7 @@ class Controller extends React.Component {
     super();
 
     this.state = {
-      loading: false,
+      loading: true,
       messages: [],
     };
 

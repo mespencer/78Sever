@@ -9,10 +9,23 @@ class Message extends React.Component {
     this.props.markAsRead(this.props.id);
   }
 
+  priorityToClass(priority) {
+    switch (priority) {
+      case 1:
+        return 'info';
+      case 2:
+        return 'warning';
+      case 3:
+        return 'danger';
+      case 0:
+      default:
+        return null;
+    }
+  }
 
   render() {
     return (
-      <tr>
+      <tr className={this.priorityToClass(this.props.priority)}>
         <td>
           {this.props.text}
         </td>
@@ -27,6 +40,7 @@ class Message extends React.Component {
 Message.propTypes = {
   id: React.PropTypes.number.isRequired,
   markAsRead: React.PropTypes.func.isRequired,
+  priority: React.PropTypes.number.isRequired,
   text: React.PropTypes.string.isRequired,
 };
 

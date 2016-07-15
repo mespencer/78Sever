@@ -9,12 +9,12 @@ class AddMessage extends React.Component {
       value: {
         text: '',
         activeFor: '',
-        priority: '',
+        priority: '0',
       },
       valid: {
         text: false,
         activeFor: false,
-        priority: false,
+        priority: true,
       },
     };
 

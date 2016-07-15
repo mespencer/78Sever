@@ -8,16 +8,24 @@ class Layout extends React.Component {
           id={message.id}
           text={message.text}
           markAsRead={this.props.markAsRead}
+          priority={message.priority}
           key={index}
         />
       );
       return message.removed ? null : content;
     });
+    const nothing = (
+      <tr>
+        <td className="text-center">
+          There are no new messages :(
+        </td>
+      </tr>
+    );
 
     return (
       <ReactBootstrap.Table>
         <tbody>
-          {messages}
+          {this.props.messages.length === 0 ? nothing : messages}
         </tbody>
       </ReactBootstrap.Table>
     );

@@ -25,6 +25,7 @@ class MessagesController extends Controller
         $results[$key]['id'] = $message->id;
         $results[$key]['text'] = $message->text;
         $results[$key]['removed'] = false;
+        $results[$key]['priority'] = $message->priority;
         $results[$key]['createdBy'] = $message->createdBy->name;
         $results[$key]['seenBy'] = array();
         foreach ($message->seenBy() as $key => $value) {
