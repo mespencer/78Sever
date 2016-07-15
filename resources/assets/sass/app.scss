@@ -108,6 +108,7 @@ a {
 
   @media (max-width : $break-sm) {
     padding: $box-spacing-half-sm;
+    padding-top: $sidebar-trigger-size + 5px; // Find a better solution later
     width: 100%;
   }
 }
@@ -153,6 +154,10 @@ a {
 
   &-page {
     height: calc(100vh - #{$box-spacing-half * 2});
+
+    @media (max-width : $break-sm) {
+      height: auto;
+    }
   }
 }
 
