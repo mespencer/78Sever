@@ -1,5 +1,6 @@
 import Layout from './Layout';
 import Homepage from '../modules/Homepage/Controller';
+import MessageBoard from '../modules/MessageBoard/Controller';
 
 class Controller extends React.Component {
   constructor() {
@@ -20,7 +21,9 @@ class Controller extends React.Component {
   }
 
   messages() {
-
+    this.setState({
+      view: <MessageBoard width={12} fullHeight />,
+    });
   }
 
   render() {

@@ -13,6 +13,7 @@ class Controller extends React.Component {
     };
 
     this.updating = false;
+    this.updateInt = null;
 
     this.updateMessages = this.updateMessages.bind(this);
     this.onLoad = this.onLoad.bind(this);
@@ -21,7 +22,11 @@ class Controller extends React.Component {
 
   componentDidMount() {
     this.updateMessages();
-    setInterval(this.updateMessages, 5000);
+    this.updateInt = setInterval(this.updateMessages, 5000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.updateInt);
   }
 
   onLoad(data) {
@@ -75,7 +80,12 @@ class Controller extends React.Component {
     );
 
     return (
-      <Box title="Message Board" width={this.props.width} actions={actions}>
+      <Box
+        title="Message Board"
+        width={this.props.width}
+        actions={actions}
+        fullHeight={this.props.fullHeight}
+      >
         {this.state.loading ? loading : content}
       </Box>
     );
@@ -83,6 +93,7 @@ class Controller extends React.Component {
 }
 
 Controller.propTypes = {
+  fullHeight: React.PropTypes.bool,
   width: React.PropTypes.number.isRequired,
 };
 

@@ -15,6 +15,7 @@ class Controller extends React.Component {
         content={this.props.children}
         width={width}
         actions={this.props.actions}
+        fullHeight={this.props.fullHeight}
       />
     );
   }
@@ -23,6 +24,7 @@ class Controller extends React.Component {
 Controller.propTypes = {
   actions: React.PropTypes.node,
   children: React.PropTypes.node,
+  fullHeight: React.PropTypes.bool,
   title: React.PropTypes.string.isRequired,
   width: React.PropTypes.number,
 };

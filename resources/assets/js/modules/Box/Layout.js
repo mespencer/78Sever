@@ -10,7 +10,13 @@ class Layout extends React.Component {
     );
 
     return (
-      <div className={`col-xs-12 col-sm-${this.props.width} box-container`}>
+      <div
+        className={`
+          col-xs-12
+          col-sm-${this.props.width}
+          box-container ${this.props.fullHeight ? 'full-page' : null}`
+        }
+      >
         <ReactBootstrap.Panel header={header} className="full-height full-width">
           {this.props.content}
         </ReactBootstrap.Panel>
@@ -22,6 +28,7 @@ class Layout extends React.Component {
 Layout.propTypes = {
   actions: React.PropTypes.node,
   content: React.PropTypes.node,
+  fullHeight: React.PropTypes.bool,
   title: React.PropTypes.string.isRequired,
   width: React.PropTypes.number.isRequired,
 };
