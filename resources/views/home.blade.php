@@ -9,6 +9,5 @@
 @section('footer')
   <script>
     const token = '{{ csrf_token() }}';
-    loadModule('Homepage', 'content');
   </script>
 @endsection

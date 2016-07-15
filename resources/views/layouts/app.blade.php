@@ -12,26 +12,9 @@
   @yield('head')
 </head>
 <body>
-  <nav class="sidebar">
-    <a class="sidebar-button" href="/">
-      <span class="glyphicon glyphicon-home"></span>
-    </a>
-    <a class="sidebar-button" href="/message-board">
-      <span class="glyphicon glyphicon-bullhorn"></span>
-    </a>
-    <a class="sidebar-button" href="/shopping-list">
-      <span class="glyphicon glyphicon-th-list"></span>
-    </a>
-    <a class="sidebar-button" href="/chores">
-      <span class="glyphicon glyphicon-calendar"></span>
-    </a>
-    <a class="sidebar-button sidebar-bottom" href="/settings">
-      <span class="glyphicon glyphicon-cog"></span>
-    </a>
-  </nav>
-  <div class="content" id="content">
+  <span id="body" class="body">
     @yield('content')
-  </div>
+  </span>
 
   <!-- Javascript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
